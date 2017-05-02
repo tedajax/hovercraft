@@ -7,6 +7,8 @@ public class RepulsorData
     public float rideHeight;
     public float forceFactor;
     public float dampingFactor;
+    public float dampLinearVel;
+    public float dampQuadVel;
     public float minHeight;
     public LayerMask layerMask;
 }
@@ -14,6 +16,8 @@ public class RepulsorData
 public class Repulsor : MonoBehaviour, IPart
 {
     public RepulsorData data;
+
+    private Vector3 velocity;
 
     public void SetData(object data)
     {
@@ -24,6 +28,7 @@ public class Repulsor : MonoBehaviour, IPart
 
     public void ApplyForces(Rigidbody rigidbody)
     {
+        velocity = rigidbody.velocity;
         Vector3 down = -transform.up;
         RaycastHit hitInfo;
         if (Physics.Raycast(transform.position, down, out hitInfo, data.layerMask)) {
@@ -34,12 +39,12 @@ public class Repulsor : MonoBehaviour, IPart
 
     private Vector3 calculateForce(float height)
     {
-        float force = data.forceFactor * (data.rideHeight - height);
-        force += data.forceFactor * Mathf.Pow(data.minHeight / height, 2);
-        float damping = -1f * data.dampingFactor * force;
-        force += damping;
+        float force = data.forceFactor * (data.rideHeight - height) +
+            data.dampingFactor * (1 / (height * height)) -
+            data.dampLinearVel * velocity.y -
+            data.dampQuadVel * (velocity.y * velocity.y);
 
-        return transform.TransformDirection(Vector3.up) * force;
+        return transform.up * force;
     }
 
     public void OnDrawGizmos()

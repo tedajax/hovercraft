@@ -13,6 +13,8 @@ public class InputBinding
     public InputBindingType inputBindingType;
     public string inputName;
     public bool invert;
+    public float min = -1f;
+    public float max = 1f;
 
     public float Value { get; private set; }
 
@@ -28,20 +30,24 @@ public class InputBinding
             return 0f;
         }
 
+        float value = 0f;
+
         switch (inputBindingType) {
             case InputBindingType.Button:
                 if (Input.GetButton(inputName)) {
-                    return (invert) ? 0f : 1f;
+                    value = (invert) ? 0f : 1f;
                 }
                 else {
-                    return (invert) ? 1f : 0f;
+                    value = (invert) ? 1f : 0f;
                 }
+                break;
 
             case InputBindingType.Axis:
                 float axis = Input.GetAxis(inputName);
-                return (invert) ? -axis : axis;
-
-            default: return 0f;
+                value = (invert) ? -axis : axis;
+                break;
         }
+
+        return Mathf.Clamp(value, min, max);
     }
 }
