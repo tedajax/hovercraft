@@ -39,7 +39,7 @@ public class Repulsor : MonoBehaviour, IPart
 
     private Vector3 calculateForce(float height)
     {
-        float force = data.forceFactor * (data.rideHeight - height) +
+        float force = Mathf.Max(data.forceFactor * (data.rideHeight - height), 0f) +
             data.dampingFactor * (1 / (height * height)) -
             data.dampLinearVel * velocity.y -
             data.dampQuadVel * (velocity.y * velocity.y);
