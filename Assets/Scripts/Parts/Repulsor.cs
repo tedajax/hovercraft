@@ -44,7 +44,7 @@ public class Repulsor : MonoBehaviour, IPart
             data.dampLinearVel * velocity.y -
             data.dampQuadVel * (velocity.y * velocity.y);
 
-        return transform.up * force;
+        return transform.up * Mathf.Max(force, 0f);
     }
 
     public void OnDrawGizmos()
