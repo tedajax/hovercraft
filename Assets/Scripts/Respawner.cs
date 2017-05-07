@@ -15,6 +15,10 @@ public class Respawner : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Reset")) {
+            Respawn();
+        }
+
         if (transform.position.y <= killY) {
             Respawn();
         }

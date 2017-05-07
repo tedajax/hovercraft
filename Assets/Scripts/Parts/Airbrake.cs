@@ -56,8 +56,7 @@ public class Airbrake : Part
             targetBrakePower = brakeBinding.Value;
         }
 
-        Mathf.MoveTowards(brakePower, targetBrakePower, data.brakeSpeed * Time.deltaTime);
-
+        brakePower = Mathf.MoveTowards(brakePower, targetBrakePower, data.brakeSpeed * Time.deltaTime);
         brakeDrag = Mathf.Max(Mathf.Lerp(data.unbrakedDrag, data.brakingDrag, brakePower), 0f);
     }
 }
