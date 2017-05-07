@@ -6,36 +6,58 @@ public class AirbrakeData
 {
     public float brakingDrag;
     public float unbrakedDrag;
+
+    public float brakeSpeed;
 }
 
-public class Airbrake : MonoBehaviour, IPart
+public class Airbrake : Part
 {
     public InputBinding brakeBinding;
 
     public AirbrakeData data;
 
+    private float brakeDrag;
     private float brakePower;
+    private float brakeVelocity;
 
-    public void SetData(object data)
+    public override float CurrentForce
+    {
+        get
+        {
+            return brakeDrag;
+        }
+    }
+
+    public override float ForcePercentage
+    {
+        get
+        {
+            return brakePower;
+        }
+    }
+
+    public override void SetData(object data)
     {
         if (data is AirbrakeData) {
             data = data as AirbrakeData;
         }
     }
 
-    public void ApplyForces(Rigidbody rigidbody)
+    public override void ApplyForces(Rigidbody rigidbody)
     {
-        rigidbody.drag = brakePower;
+        rigidbody.drag = brakeDrag;
     }
 
     public void Update()
     {
-        float brakeScalar = 0f;
+        float targetBrakePower = 0f;
         if (brakeBinding != null) {
             brakeBinding.Update();
-            brakeScalar = brakeBinding.Value;
+            targetBrakePower = brakeBinding.Value;
         }
 
-        brakePower = Mathf.Max(Mathf.Lerp(data.unbrakedDrag, data.brakingDrag, brakeScalar), 0f);
+        Mathf.MoveTowards(brakePower, targetBrakePower, data.brakeSpeed * Time.deltaTime);
+
+        brakeDrag = Mathf.Max(Mathf.Lerp(data.unbrakedDrag, data.brakingDrag, brakePower), 0f);
     }
 }

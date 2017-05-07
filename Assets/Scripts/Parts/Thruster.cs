@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Thruster : MonoBehaviour, IPart
+public class Thruster : Part
 {
     public InputBinding throttleBinding;
     public InputBinding reverseBinding;
@@ -10,9 +10,25 @@ public class Thruster : MonoBehaviour, IPart
     public float force = 5f;
     public float vectorRange = 0f;
 
-    public void SetData(object data) { }
+    public override float CurrentForce
+    {
+        get
+        {
+            return calculateThrottle() * force;
+        }
+    }
 
-    public void ApplyForces(Rigidbody rigidbody)
+    public override float ForcePercentage
+    {
+        get
+        {
+            return CurrentForce / force;
+        }
+    }
+
+    public override void SetData(object data) { }
+
+    public override void ApplyForces(Rigidbody rigidbody)
     {
         float throttle = calculateThrottle();
         Vector3 forceVec = calculateThrustDirection() * throttle * force;
