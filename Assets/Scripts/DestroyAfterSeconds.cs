@@ -1,0 +1,16 @@
+﻿using UnityEngine;
+
+public class DestroyAfterSeconds : MonoBehaviour
+{
+    public float lifetime = 0f;
+
+    void Update()
+    {
+        if (lifetime > 0f) {
+            lifetime -= Time.deltaTime;
+            if (lifetime <= 0f) {
+                Destroy(gameObject);
+            }
+        }
+    }
+}
