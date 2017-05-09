@@ -14,12 +14,14 @@ public class GunData
     public Transform muzzleFlashTransform;
     public GameObject muzzleFlashPrefab;
     public GameObject bulletPrefab;
+    public bool addVelocityToBullets;
 }
 
 public class GunController : MonoBehaviour
 {
     public GunData data;
     public InputBinding fireBinding;
+    public HovercraftController hoverCraft;
 
     private float fireTimer;
     private float spinRate;
@@ -74,5 +76,9 @@ public class GunController : MonoBehaviour
         flash.transform.SetParent(data.muzzleFlashTransform, false);
 
         var bulletObj = Instantiate(data.bulletPrefab, data.bulletSpawnTransform.position, data.bulletSpawnTransform.rotation) as GameObject;
+        if (data.addVelocityToBullets) {
+            var bullet = bulletObj.GetComponent<Bullet>();
+            bullet.AddedVelocity = hoverCraft.RigidBody.velocity;
+        }
     }
 }

@@ -1,0 +1,7 @@
+﻿- [ ] Setup visuals for 4 different colors.  Create a factory for creating them in selected color.
+- [ ] Research InControl
+- [ ] Figure out cameras
+- [ ] Get split screen working with multiple controllers
+- [ ] Make bullets do something?
+- [ ] More/better tracks
+- [ ] Enforce racing rules (position/laps/etc...)

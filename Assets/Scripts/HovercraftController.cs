@@ -9,6 +9,8 @@ public class HovercraftController : MonoBehaviour
 
     private new Rigidbody rigidbody;
 
+    public Rigidbody RigidBody { get { return rigidbody; } }
+
     public void Start()
     {
         parts = gameObject.GetComponentsInChildren<IPart>();

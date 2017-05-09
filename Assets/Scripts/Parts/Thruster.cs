@@ -26,6 +26,9 @@ public class Thruster : Part
         }
     }
 
+    public Quaternion Yaw { get; set; }
+    public Quaternion Pitch { get; set; }
+
     public override void SetData(object data) { }
 
     public override void ApplyForces(Rigidbody rigidbody)
@@ -71,10 +74,10 @@ public class Thruster : Part
             vert = verticalVectorBinding.Value;
         }
 
-        Quaternion yaw = Quaternion.AngleAxis(horiz * vectorRange, Vector3.up);
-        Quaternion pitch = Quaternion.AngleAxis(vert * vectorRange, Vector3.right);
+        Yaw = Quaternion.AngleAxis(horiz * vectorRange, Vector3.up);
+        Pitch = Quaternion.AngleAxis(vert * vectorRange, Vector3.right);
 
-        return yaw * pitch * transform.forward;
+        return Yaw * Pitch * transform.forward;
     }
 
     public void OnDrawGizmos()
