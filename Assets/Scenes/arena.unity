@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 1, g: 1, b: 0.74264705, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 524897995}
-  m_IndirectSpecularColor: {r: 0.77217, g: 0.7707596, b: 0.65840816, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -86,8 +86,7 @@ LightmapSettings:
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-  m_LightingDataAsset: {fileID: 112000002, guid: d0f637df47edd92488ba1fb990ad1553,
-    type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
@@ -1958,6 +1957,56 @@ Prefab:
     - target: {fileID: 4871756880752712, guid: 881ed2da8566e4941bc71500e5ef25cf, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114376847909083940, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: boostBinding.inputName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651034927564460, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: boostBinding.inputName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114376847909083940, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: boostBinding.min
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651034927564460, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: boostBinding.min
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114376847909083940, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: boostMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651034927564460, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: boostMultiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114593718180560274, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: boostBinding.inputName
+      value: Fire2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114593718180560274, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: boostMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114376847909083940, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: force
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651034927564460, guid: 881ed2da8566e4941bc71500e5ef25cf,
+        type: 2}
+      propertyPath: force
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 881ed2da8566e4941bc71500e5ef25cf, type: 2}

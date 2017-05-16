@@ -6,8 +6,10 @@ public class Thruster : Part
     public InputBinding reverseBinding;
     public InputBinding horizontalVectorBinding;
     public InputBinding verticalVectorBinding;
+    public InputBinding boostBinding;
 
     public float force = 5f;
+    public float boostMultiplier = 1f;
     public float vectorRange = 0f;
 
     public override float CurrentForce
@@ -45,6 +47,7 @@ public class Thruster : Part
         reverseBinding.Update();
         horizontalVectorBinding.Update();
         verticalVectorBinding.Update();
+        boostBinding.Update();
     }
 
     private float calculateThrottle()
@@ -59,7 +62,12 @@ public class Thruster : Part
             reverse = reverseBinding.Value;
         }
 
-        return throttle - reverse;
+        float boost = 1f;
+        if (boostBinding != null && boostBinding.IsPressed) {
+            boost = boostBinding.Value * boostMultiplier;
+        }
+
+        return throttle * boost - reverse;
     }
 
     private Vector3 calculateThrustDirection()

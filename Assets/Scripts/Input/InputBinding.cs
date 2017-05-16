@@ -9,6 +9,7 @@ public enum InputBindingType
 
 [Serializable]
 public class InputBinding
+
 {
     public InputBindingType inputBindingType;
     public string inputName;
@@ -17,6 +18,7 @@ public class InputBinding
     public float max = 1f;
 
     public float Value { get; private set; }
+    public bool IsPressed { get { return Value != 0f; } }
 
 
     public void Update()
